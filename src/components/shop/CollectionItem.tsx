@@ -16,8 +16,6 @@ export const CollectionItem: React.FC<CollectionItemProps> = ({ name, price, ima
 		setWidthH1(nametag.current?.offsetWidth);
 	}, []);
 
-	console.log(widthH1);
-
 	return (
 		<CollectionItemStyled imageUrl={imageUrl} widthH1={widthH1} className='w-full pr-3 pb-8'>
 			<div className={classes.card}>
@@ -56,13 +54,14 @@ const CollectionItemStyled = styled.div<CollectionItemStyledProps>`
 		.name::before {
 			position: absolute;
 			content: '';
-			width: calc(${({ widthH1 }) => widthH1}px);
-			border-radius: 5px;
-			top: 30px;
+			width: calc(${(props) => props.widthH1}px);
+			/* border-radius: 5px; */
+			top: 16px;
 			left: 10px;
-			height: 4px;
+			height: 8px;
+			background: #957dad82;
+			z-index: -3;
 			/* background: #957dad; */
-			background: #957dadb0;
 		}
 
 		/* height:  */

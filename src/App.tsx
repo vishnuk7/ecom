@@ -1,10 +1,6 @@
 import { Route, Switch } from 'react-router-dom';
-import { Homepage, Shop } from './pages';
-import { Header } from './components/Header';
-
-const Hats = () => {
-	return <h2>HATS</h2>;
-};
+import { Homepage, Shop, Form } from './pages';
+import { Header } from './components';
 
 const App = () => {
 	return (
@@ -14,9 +10,10 @@ const App = () => {
 				<Route exact path='/'>
 					<Homepage />
 				</Route>
-				<Route path='/shop/hats'>
-					<Hats />
+				<Route path='/singin'>
+					<Form />
 				</Route>
+				<Route path='/shop/hats'></Route>
 				<Route>
 					<Shop />
 				</Route>
