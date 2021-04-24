@@ -2,10 +2,15 @@ module.exports = {
 	purge: [],
 	darkMode: false, // or 'media' or 'class'
 	theme: {
-		fontFamily: {
-			poppins: ['Poppins', 'sans-serif'],
+		extend: {
+			colors: {
+				primary: '#957dad',
+				greyBlack: '#2f3542',
+			},
+			fontFamily: {
+				body: ['Mitr', 'sans-serif'],
+			},
 		},
-		extend: {},
 	},
 	variants: {
 		extend: {},

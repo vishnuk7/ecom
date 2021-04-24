@@ -33,7 +33,7 @@
 	"scripts": {
 		"build:style": "tailwind build src/styles/tailwind.css -o src/styles/index.css",
 		"start": "npm run build:style && react-scripts start",
-		"build": "NODE_ENV=production npm run build:style && react-scripts build",
+		"build": "npm run build:style && react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject"
 	},
@@ -56,10 +56,11 @@
 		]
 	},
 	"devDependencies": {
-		"@tailwindcss/postcss7-compat": "^2.1.0",
+		"@tailwindcss/postcss7-compat": "^2.1.2",
+		"@types/react-router-dom": "^5.1.7",
 		"@types/styled-components": "^5.1.9",
 		"autoprefixer": "^9.8.6",
 		"postcss": "^7.0.35",
-		"tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.1.0"
+		"tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.1.2"
 	}
 }

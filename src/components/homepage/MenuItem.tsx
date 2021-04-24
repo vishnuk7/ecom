@@ -1,3 +1,4 @@
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
 interface MenuItemProps {
@@ -6,11 +7,15 @@ interface MenuItemProps {
 	title?: string;
 	height?: string;
 	position?: string;
+	linkUrl?: string;
 }
 
-export const MenuItem: React.FC<MenuItemProps> = ({ imageUrl1, imageUrl2, height, position, title }) => {
+export const MenuItem: React.FC<MenuItemProps> = ({ imageUrl1, imageUrl2, height, position, title, linkUrl }) => {
+	const history = useHistory();
+
 	return (
 		<MenuItemsStyled
+			onClick={() => linkUrl && history.push(linkUrl)}
 			imageUrl1={imageUrl1}
 			imageUrl2={imageUrl2}
 			position={position}
@@ -18,7 +23,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({ imageUrl1, imageUrl2, height
 			<div className='background absolute z-10 w-full h-full top-0'></div>
 			<div className='withoutbackground absolute z-20 w-full h-full top-0'></div>
 			<div className='title-box z-30 text-3xl text-gray-100 py-3 px-5'>
-				<span className='font-poppins'>{title?.toUpperCase()}</span>
+				<span className='font-medium'>{title?.toUpperCase()}</span>
 			</div>
 		</MenuItemsStyled>
 	);
@@ -39,7 +44,6 @@ const MenuItemsStyled = styled.div<MenuItemProps>`
 		& span {
 			text-shadow: 0 2px 4px rgba(71, 97, 206, 0.36);
 			letter-spacing: 7.2px;
-			font-weight: 600;
 		}
 	}
 	.background {
