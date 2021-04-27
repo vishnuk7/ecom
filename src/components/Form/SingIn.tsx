@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { FormInput } from './FormInput';
 import { SingType } from './type';
 import { CustomBtn } from '../CusttomBtn';
+import { signInWithGoogle } from '.././../firebase/firebase.util';
 
 export const SingIn = () => {
 	const [userData, setUserData] = useState<SingType>();
@@ -35,7 +36,20 @@ export const SingIn = () => {
 					handleChange={handleChange}
 					required={true}
 				/>
-				<CustomBtn bgColor='bg-black' textColor='text-gray-200' type='submit' value='Sign In' />
+				<div className='flex'>
+					<div className='mr-4'>
+						<CustomBtn bgColor='bg-black' textColor='text-gray-200' type='submit' value='Sign In' />
+					</div>
+					<div>
+						<CustomBtn
+							onClick={() => signInWithGoogle()}
+							bgColor='bg-blue-600'
+							textColor='text-gray-200'
+							type='submit'
+							value='Sign In With Google'
+						/>
+					</div>
+				</div>
 			</form>
 		</div>
 	);

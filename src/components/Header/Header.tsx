@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { auth } from '../../firebase/firebase.util';
 
 const classes = {
 	container: 'flex justify-between pt-2 pb-5',
@@ -16,6 +17,9 @@ export const Header = () => {
 			<div className='options '>
 				<Link to='/shop'>SHOP</Link>
 				<Link to='/shop'>CONTACT</Link>
+				<Link to='/' onClick={() => auth.signOut()}>
+					SING OUT
+				</Link>
 			</div>
 		</HeaderStyled>
 	);

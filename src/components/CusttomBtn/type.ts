@@ -3,4 +3,5 @@ export interface CustomBtnType {
 	type: 'button' | 'submit' | 'reset' | undefined;
 	bgColor: string;
 	textColor: string;
+	onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
 }
