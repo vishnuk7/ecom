@@ -21,6 +21,11 @@ export const SignUp = () => {
 			if (userData) {
 				const { user } = await auth.createUserWithEmailAndPassword(userData?.email, userData?.password);
 				if (user) await createProfile(user, { displayName: userData?.displayName });
+				setUserData({
+					displayName: '',
+					email: '',
+					password: '',
+				});
 			}
 		} catch (err) {
 			console.error(err);

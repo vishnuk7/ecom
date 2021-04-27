@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { FormInput } from './FormInput';
 import { InputType } from './type';
 import { CustomBtn } from '../CusttomBtn';
-import { signInWithGoogle } from '../../firebase/firebase.util';
+import { auth, signInWithGoogle } from '../../firebase/firebase.util';
 
 export const SignIn = () => {
 	const [userData, setUserData] = useState<InputType>();
@@ -14,12 +14,27 @@ export const SignIn = () => {
 		});
 	};
 
+	const handleSubmit = async (e: FormEvent) => {
+		e.preventDefault();
+		try {
+			if (userData) {
+				await auth.signInWithEmailAndPassword(userData?.email, userData?.password);
+				setUserData({
+					email: '',
+					password: '',
+				});
+			}
+		} catch (err) {
+			console.error(err);
+		}
+	};
+
 	return (
 		<div>
 			<h2 className='text-2xl'>I already have an account</h2>
 			<span className='text-gray-500'>Sign in with your email and password</span>
 
-			<form>
+			<form onSubmit={handleSubmit}>
 				<FormInput
 					type='email'
 					label='Email'
