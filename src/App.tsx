@@ -34,7 +34,7 @@ const App = () => {
 				<Route exact path='/'>
 					<Homepage />
 				</Route>
-				<Route path='/singin'>
+				<Route path='/signin'>
 					<Form />
 				</Route>
 				<Route path='/shop/hats'></Route>

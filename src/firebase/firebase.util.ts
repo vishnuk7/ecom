@@ -17,7 +17,8 @@ export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
 export const createProfile = async (
-	userAuth: firebase.User
+	userAuth: firebase.User,
+	additionalData?: any
 ): Promise<firebase.firestore.DocumentReference<firebase.firestore.DocumentData> | void> => {
 	if (!userAuth) return;
 
@@ -33,6 +34,7 @@ export const createProfile = async (
 				displayName,
 				email,
 				createdAt,
+				...additionalData,
 			});
 		} catch (err) {
 			console.error(`Error creating user ${err}`);

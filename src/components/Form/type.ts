@@ -1,4 +1,4 @@
-export interface SingType {
+export interface InputType {
 	[k: string]: string;
 }
 

@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { FormInput } from './FormInput';
-import { SingType } from './type';
+import { InputType } from './type';
 import { CustomBtn } from '../CusttomBtn';
-import { signInWithGoogle } from '.././../firebase/firebase.util';
+import { signInWithGoogle } from '../../firebase/firebase.util';
 
-export const SingIn = () => {
-	const [userData, setUserData] = useState<SingType>();
+export const SignIn = () => {
+	const [userData, setUserData] = useState<InputType>();
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setUserData({
