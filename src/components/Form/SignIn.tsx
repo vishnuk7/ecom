@@ -60,7 +60,7 @@ export const SignIn = () => {
 							onClick={() => signInWithGoogle()}
 							bgColor='bg-blue-600'
 							textColor='text-gray-200'
-							type='submit'
+							type='button'
 							value='Sign In With Google'
 						/>
 					</div>
