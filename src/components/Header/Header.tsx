@@ -1,18 +1,23 @@
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { auth } from '../../firebase/firebase.util';
-
-interface HeaderProps {
-	currentUser: {
-		id: string;
-	} | null;
-}
 
 const classes = {
 	container: 'flex justify-between pt-2 pb-5',
 };
 
-export const Header: React.FC<HeaderProps> = ({ currentUser }) => {
+interface stateProps {
+	user: {
+		currentUser: string | null;
+	};
+}
+
+export const Header: React.FC = () => {
+	const { currentUser } = useSelector((state: stateProps) => state.user);
+
+	console.log(currentUser);
+
 	return (
 		<HeaderStyled className={classes.container}>
 			<div>
@@ -23,7 +28,7 @@ export const Header: React.FC<HeaderProps> = ({ currentUser }) => {
 			<div className='options '>
 				<Link to='/shop'>SHOP</Link>
 				<Link to='/shop'>CONTACT</Link>
-				{currentUser ? (
+				{/* {currentUser ? (
 					<Link to='/' onClick={() => auth.signOut()}>
 						SING OUT
 					</Link>
@@ -31,7 +36,7 @@ export const Header: React.FC<HeaderProps> = ({ currentUser }) => {
 					<Link to='/signin' onClick={() => auth.signOut()}>
 						SING IN
 					</Link>
-				)}
+				)} */}
 			</div>
 		</HeaderStyled>
 	);

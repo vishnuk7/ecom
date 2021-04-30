@@ -29,7 +29,7 @@ const App = () => {
 
 	return (
 		<div className='App'>
-			<Header currentUser={currentUser} />
+			<Header />
 			<Switch>
 				<Route exact path='/'>
 					<Homepage />
