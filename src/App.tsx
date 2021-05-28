@@ -1,11 +1,21 @@
 import { useEffect, useState } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { SET_CURRENT_USER } from './redux/actions/actionTypes';
 import { Homepage, Shop, Form } from './pages';
 import { Header } from './components';
 import { auth, createProfile } from './firebase/firebase.util';
+import { setCurrentUser } from './redux/users';
+
+interface stateProps {
+	users: {
+		currentUser: string | null;
+	};
+}
 
 const App = () => {
-	const [currentUser, setCurrentUser] = useState<{ id: string } | null>(null);
+	const { currentUser } = useSelector((state: stateProps) => state.users);
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		const unsubscribe = auth.onAuthStateChanged(async (userAuth) => {
@@ -13,19 +23,18 @@ const App = () => {
 				const userRef = await createProfile(userAuth);
 				if (userRef)
 					userRef.onSnapshot((snapShot) => {
-						setCurrentUser({
+						const payload = {
 							id: snapShot.id,
 							...snapShot.data(),
-						});
+						};
+						dispatch(setCurrentUser(payload));
 					});
-			} else {
-				setCurrentUser(null);
 			}
 		});
 		return () => {
 			unsubscribe();
 		};
-	}, []);
+	}, [dispatch]);
 
 	return (
 		<div className='App'>
@@ -34,9 +43,7 @@ const App = () => {
 				<Route exact path='/'>
 					<Homepage />
 				</Route>
-				<Route path='/signin'>
-					<Form />
-				</Route>
+				<Route path='/signin'>{!currentUser ? <Form /> : <Redirect to='/' />}</Route>
 				<Route path='/shop/hats'></Route>
 				<Route>
 					<Shop />

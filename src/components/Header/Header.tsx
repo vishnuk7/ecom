@@ -8,15 +8,13 @@ const classes = {
 };
 
 interface stateProps {
-	user: {
+	users: {
 		currentUser: string | null;
 	};
 }
 
 export const Header: React.FC = () => {
-	const { currentUser } = useSelector((state: stateProps) => state.user);
-
-	console.log(currentUser);
+	const { currentUser } = useSelector((state: stateProps) => state.users);
 
 	return (
 		<HeaderStyled className={classes.container}>
@@ -28,7 +26,7 @@ export const Header: React.FC = () => {
 			<div className='options '>
 				<Link to='/shop'>SHOP</Link>
 				<Link to='/shop'>CONTACT</Link>
-				{/* {currentUser ? (
+				{currentUser ? (
 					<Link to='/' onClick={() => auth.signOut()}>
 						SING OUT
 					</Link>
@@ -36,7 +34,7 @@ export const Header: React.FC = () => {
 					<Link to='/signin' onClick={() => auth.signOut()}>
 						SING IN
 					</Link>
-				)} */}
+				)}
 			</div>
 		</HeaderStyled>
 	);

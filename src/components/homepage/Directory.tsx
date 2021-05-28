@@ -12,7 +12,7 @@ interface dataType {
 }
 
 export const Directory: React.FC = () => {
-	const [menuItems, setMenuItems] = useState<dataType[]>(sections);
+	const [menuItems] = useState<dataType[]>(sections);
 	console.log(menuItems);
 
 	return (
@@ -20,13 +20,13 @@ export const Directory: React.FC = () => {
 			<div className='grid grid-cols-1 sm:grid-cols-3 gap-4 h-'>
 				{menuItems.map((item) => {
 					if (item.id <= 3) return <MenuItem key={item.id} height='h-64' {...item} />;
-					return <></>;
+					return;
 				})}
 			</div>
 			<div className='grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4'>
 				{menuItems.map((item) => {
 					if (item.id > 3) return <MenuItem key={item.id} height='h-96' {...item} />;
-					return <></>;
+					return;
 				})}
 			</div>
 		</>
