@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { auth } from '../../firebase/firebase.util';
+import { Dropdown } from './Dropdown';
+import { CartIcon } from './CartIcon';
 
 const classes = {
 	container: 'flex justify-between pt-2 pb-5',
@@ -23,7 +25,7 @@ export const Header: React.FC = () => {
 					<span>Mey\</span>
 				</Link>
 			</div>
-			<div className='options '>
+			<div className='flex items-center options relative'>
 				<Link to='/shop'>SHOP</Link>
 				<Link to='/shop'>CONTACT</Link>
 				{currentUser ? (
@@ -35,6 +37,9 @@ export const Header: React.FC = () => {
 						SING IN
 					</Link>
 				)}
+				<CartIcon />
+                
+				<Dropdown />
 			</div>
 		</HeaderStyled>
 	);
@@ -42,7 +47,8 @@ export const Header: React.FC = () => {
 
 const HeaderStyled = styled.div`
 	& .options {
-		a {
+		a,
+		span {
 			margin-right: 1rem;
 		}
 	}

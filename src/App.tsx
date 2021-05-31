@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { SET_CURRENT_USER } from './redux/actions/actionTypes';
 import { Homepage, Shop, Form } from './pages';
 import { Header } from './components';
 import { auth, createProfile } from './firebase/firebase.util';
