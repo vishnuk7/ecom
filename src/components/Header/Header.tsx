@@ -38,7 +38,7 @@ export const Header: React.FC = () => {
 					</Link>
 				)}
 				<CartIcon />
-                
+
 				<Dropdown />
 			</div>
 		</HeaderStyled>
@@ -47,8 +47,7 @@ export const Header: React.FC = () => {
 
 const HeaderStyled = styled.div`
 	& .options {
-		a,
-		span {
+		a {
 			margin-right: 1rem;
 		}
 	}

@@ -5,15 +5,11 @@ import { Homepage, Shop, Form } from './pages';
 import { Header } from './components';
 import { auth, createProfile } from './firebase/firebase.util';
 import { setCurrentUser } from './redux/users';
-
-interface stateProps {
-	users: {
-		currentUser: string | null;
-	};
-}
+import { RootState } from './redux';
+import { Checkout } from './pages/checkout';
 
 const App = () => {
-	const { currentUser } = useSelector((state: stateProps) => state.users);
+	const { currentUser } = useSelector((state: RootState) => state.users);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -44,8 +40,11 @@ const App = () => {
 				</Route>
 				<Route path='/signin'>{!currentUser ? <Form /> : <Redirect to='/' />}</Route>
 				<Route path='/shop/hats'></Route>
-				<Route>
+				<Route path='/shop'>
 					<Shop />
+				</Route>
+				<Route path='/checkout'>
+					<Checkout />
 				</Route>
 			</Switch>
 		</div>

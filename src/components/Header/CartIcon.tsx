@@ -1,8 +1,9 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { FiShoppingCart } from 'react-icons/fi';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setToggleDropdown } from '../../redux/cart';
+import { RootState } from '../../redux';
 
 const transitionValues = {
 	duration: 0.8,
@@ -19,12 +20,15 @@ const animate = {
 const transition = { y: transitionValues, width: transitionValues, height: transitionValues };
 
 export const CartIcon = () => {
+	const { totalQuantity } = useSelector((state: RootState) => state.cart);
 	const dispatch = useDispatch();
 
 	return (
 		<CartIconStyle onClick={() => dispatch(setToggleDropdown())} className='relative'>
 			<FiShoppingCart size={25} />
-			<motion.div transition={transition} animate={animate} className='circle absolute'></motion.div>
+			{totalQuantity > 0 && (
+				<motion.div transition={transition} animate={animate} className='circle absolute'></motion.div>
+			)}
 		</CartIconStyle>
 	);
 };

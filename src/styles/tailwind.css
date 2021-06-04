@@ -8,6 +8,7 @@
 
 @layer base {
 	body {
+		background: #dfe4ea;
 		@apply px-24;
 		@apply font-body;
 		@apply font-normal;

@@ -2,16 +2,21 @@ export interface CollectionPreviewProps {
 	id: number;
 	title: string;
 	routeName: string;
-	items: CollectionItemProps[];
+	items: itemType[];
+}
+
+interface itemType {
+	id: number;
+	name: string;
+	imageUrl: string;
+	price: number;
 }
 
 export interface CollectionItemProps {
-	id?: number;
-	name?: string;
-	imageUrl?: string;
-	price?: number;
+	item: itemType;
 }
 
-export interface CollectionItemStyledProps extends CollectionItemProps {
+export interface CollectionItemStyledProps {
 	widthH1?: number | undefined;
+	imageUrl: string;
 }
