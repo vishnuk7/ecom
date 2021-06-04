@@ -1,9 +1,13 @@
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { auth } from '../../firebase/firebase.util';
 import { Dropdown } from './Dropdown';
 import { CartIcon } from './CartIcon';
+import { useRef } from 'react';
+import { useOnClickOutside } from './OutSlideClick';
+import { setToggleDropdown } from '../../redux/cart';
+import { RootState } from '../../redux';
 
 const classes = {
 	container: 'flex justify-between pt-2 pb-5',
@@ -17,6 +21,13 @@ interface stateProps {
 
 export const Header: React.FC = () => {
 	const { currentUser } = useSelector((state: stateProps) => state.users);
+	const ref = useRef<HTMLDivElement>(null);
+	const { hidden } = useSelector((state: RootState) => state.cart);
+	const dispatch = useDispatch();
+
+	useOnClickOutside(ref, () => {
+		if (hidden) dispatch(setToggleDropdown());
+	});
 
 	return (
 		<HeaderStyled className={classes.container}>
@@ -37,7 +48,7 @@ export const Header: React.FC = () => {
 						SING IN
 					</Link>
 				)}
-				<CartIcon />
+				<CartIcon ref={ref} />
 
 				<Dropdown />
 			</div>

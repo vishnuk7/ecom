@@ -4,4 +4,5 @@ export interface CustomBtnType {
 	bgColor: string;
 	textColor: string;
 	onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
+	disabled?: boolean;
 }

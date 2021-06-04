@@ -1,4 +1,4 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { combineReducers, configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import users from './users';
@@ -20,6 +20,9 @@ const persistedReducer = persistReducer(persistConfig, reducer);
 
 const store = configureStore({
 	reducer: persistedReducer,
+	middleware: getDefaultMiddleware({
+		serializableCheck: false,
+	}),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

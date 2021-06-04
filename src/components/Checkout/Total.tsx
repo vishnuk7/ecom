@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux';
+import { Stripe } from './Stripe';
 
 export const Total = () => {
 	const { totalPrice } = useSelector((state: RootState) => state.cart);
@@ -24,6 +25,7 @@ export const Total = () => {
 					alt='cards'
 				/>
 			</div>
+			<div>{/* <Stripe /> */}</div>
 		</div>
 	);
 };

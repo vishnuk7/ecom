@@ -1,12 +1,16 @@
-import { AnimatePresence, motion, useCycle } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
+import onClickOutside from 'react-onclickoutside';
 import { FiShoppingCart } from 'react-icons/fi';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { RootState } from '../../redux';
 import { CustomBtn } from '../CusttomBtn';
 import { DropdownItem } from './DropdownItem';
 import cartSvg from '../../assets/cart.svg';
 import { Link } from 'react-router-dom';
+import { setToggleDropdown } from '../../redux/cart';
+import { Props } from 'framer-motion/types/types';
+import React from 'react';
 
 const height: string[] = [];
 const opacity: number[] = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1];

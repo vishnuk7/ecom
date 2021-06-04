@@ -4,6 +4,7 @@ import { FiShoppingCart } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
 import { setToggleDropdown } from '../../redux/cart';
 import { RootState } from '../../redux';
+import React from 'react';
 
 const transitionValues = {
 	duration: 0.8,
@@ -19,19 +20,19 @@ const animate = {
 
 const transition = { y: transitionValues, width: transitionValues, height: transitionValues };
 
-export const CartIcon = () => {
+export const CartIcon = React.forwardRef<HTMLSpanElement>((props, ref) => {
 	const { totalQuantity } = useSelector((state: RootState) => state.cart);
 	const dispatch = useDispatch();
 
 	return (
-		<CartIconStyle onClick={() => dispatch(setToggleDropdown())} className='relative'>
+		<CartIconStyle ref={ref} onClick={() => dispatch(setToggleDropdown())} className='relative'>
 			<FiShoppingCart size={25} />
 			{totalQuantity > 0 && (
 				<motion.div transition={transition} animate={animate} className='circle absolute'></motion.div>
 			)}
 		</CartIconStyle>
 	);
-};
+});
 
 const CartIconStyle = styled.span`
 	cursor: pointer;
